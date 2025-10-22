@@ -2,7 +2,7 @@
 
 /* Create database (local filesystem paths). Adjust locations if you use a different root (e.g. cloud storage). */
 Use Catalog workspace;
-CREATE SCHEMA IF NOT EXISTS tpch100_db
+CREATE SCHEMA IF NOT EXISTS tpch100_db;
 
 -- nation
 CREATE TABLE IF NOT EXISTS tpch100_db.nation (
