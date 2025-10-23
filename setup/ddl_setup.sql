@@ -1,11 +1,8 @@
--- ...existing code...
-
-/* Create database (local filesystem paths). Adjust locations if you use a different root (e.g. cloud storage). */
 Use Catalog workspace;
 CREATE SCHEMA IF NOT EXISTS tpch100_db;
 
 -- nation
-CREATE TABLE IF NOT EXISTS tpch100_db.nation (
+CREATE OR REPLACE TABLE nation (
   n_nationkey INT,
   n_name STRING,
   n_regionkey INT,
@@ -14,7 +11,7 @@ CREATE TABLE IF NOT EXISTS tpch100_db.nation (
 USING DELTA;
 
 -- region
-CREATE TABLE IF NOT EXISTS tpch100_db.region (
+CREATE OR REPLACE TABLE region (
   r_regionkey INT,
   r_name STRING,
   r_comment STRING
@@ -22,7 +19,7 @@ CREATE TABLE IF NOT EXISTS tpch100_db.region (
 USING DELTA;
 
 -- part
-CREATE TABLE IF NOT EXISTS tpch100_db.part (
+CREATE OR REPLACE TABLE part (
   p_partkey INT,
   p_name STRING,
   p_mfgr STRING,
@@ -36,7 +33,7 @@ CREATE TABLE IF NOT EXISTS tpch100_db.part (
 USING DELTA;
 
 -- supplier
-CREATE TABLE IF NOT EXISTS tpch100_db.supplier (
+CREATE OR REPLACE TABLE supplier (
   s_suppkey INT,
   s_name STRING,
   s_address STRING,
@@ -48,7 +45,7 @@ CREATE TABLE IF NOT EXISTS tpch100_db.supplier (
 USING DELTA;
 
 -- partsupp
-CREATE TABLE IF NOT EXISTS tpch100_db.partsupp (
+CREATE OR REPLACE TABLE partsupp (
   ps_partkey INT,
   ps_suppkey INT,
   ps_availqty INT,
@@ -58,7 +55,7 @@ CREATE TABLE IF NOT EXISTS tpch100_db.partsupp (
 USING DELTA;
 
 -- customer
-CREATE TABLE IF NOT EXISTS tpch100_db.customer (
+CREATE OR REPLACE TABLE customer (
   c_custkey INT,
   c_name STRING,
   c_address STRING,
@@ -71,7 +68,7 @@ CREATE TABLE IF NOT EXISTS tpch100_db.customer (
 USING DELTA;
 
 -- orders (partitioning by order date for better date-range query performance)
-CREATE TABLE IF NOT EXISTS tpch100_db.orders (
+CREATE OR REPLACE TABLE orders (
   o_orderkey INT,
   o_custkey INT,
   o_orderstatus STRING,
@@ -85,7 +82,7 @@ CREATE TABLE IF NOT EXISTS tpch100_db.orders (
 USING DELTA;
 
 -- lineitem (partition by ship date)
-CREATE TABLE IF NOT EXISTS tpch100_db.lineitem (
+CREATE OR REPLACE TABLE lineitem (
   l_orderkey INT,
   l_partkey INT,
   l_suppkey INT,
