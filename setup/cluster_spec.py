@@ -25,7 +25,7 @@ d4sv3_1w_tot_8c_32g = ClusterSpec.from_dict({
                             },
                             "kind": "CLASSIC_PREVIEW",
                             "azure_attributes": {
-                                "availability": "SPOT_WITH_FALLBACK_AZURE"
+                                "availability": "SPOT_AZURE"
                             },
                             "runtime_engine": "STANDARD",
                             "spark_version": "16.4.x-scala2.12",
