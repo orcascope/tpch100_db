@@ -19,7 +19,9 @@ copy_job = Job.from_dict(
                 "notebook_task": {
                     "notebook_path": os.path.abspath("./transform/copy_ingest"),
                     "source": "WORKSPACE"
-                }
+                },
+                ## this matters to assign the cluster to task.
+                "job_cluster_key": job_cluster_key
             }
         ],
         "queue": {
@@ -57,7 +59,8 @@ tpch_query_job = Job.from_dict(
                 "notebook_task": {
                     "notebook_path": os.path.abspath("./transform/run_tpch_queries"),
                     "source": "WORKSPACE"
-                }
+                },
+                "job_cluster_key": job_cluster_key 
             }
         ],
         "queue": {
@@ -84,8 +87,8 @@ tpch_query_job = Job.from_dict(
 )
 
 w = WorkspaceClient()
-# copy_job_id = w.jobs.create(**copy_job.as_shallow_dict())
-# print(f"Copy job id: {copy_job_id}")
+copy_job_id = w.jobs.create(**copy_job.as_shallow_dict())
+print(f"Copy job id: {copy_job_id}")
 
 tpch_job_id = w.jobs.create(**tpch_query_job.as_shallow_dict())
 print(f"Tpch job id: {tpch_job_id}")
