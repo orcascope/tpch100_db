@@ -29,9 +29,9 @@ CREATE OR REPLACE TABLE part (
   p_mfgr STRING,
   p_brand STRING,
   p_type STRING,
-  p_size BIGINT,
+  p_size INT,
   p_container STRING,
-  p_retailprice DOUBLE,
+  p_retailprice DECIMAL(15,2),
   p_comment STRING
 )
 USING DELTA;
@@ -44,7 +44,7 @@ CREATE OR REPLACE TABLE supplier (
   s_address STRING,
   s_nationkey BIGINT,
   s_phone STRING,
-  s_acctbal DOUBLE,
+  s_acctbal DECIMAL(15,2),
   s_comment STRING
 )
 USING DELTA;
@@ -54,8 +54,8 @@ DROP TABLE IF EXISTS partsupp;
 CREATE OR REPLACE TABLE partsupp (
   ps_partkey BIGINT,
   ps_suppkey BIGINT,
-  ps_availqty BIGINT,
-  ps_supplycost DOUBLE,
+  ps_availqty INT,
+  ps_supplycost DECIMAL(15,2),
   ps_comment STRING
 )
 USING DELTA;
@@ -68,7 +68,7 @@ CREATE OR REPLACE TABLE customer (
   c_address STRING,
   c_nationkey BIGINT,
   c_phone STRING,
-  c_acctbal DOUBLE,
+  c_acctbal DECIMAL(15,2),
   c_mktsegment STRING,
   c_comment STRING
 )
@@ -80,11 +80,11 @@ CREATE OR REPLACE TABLE orders (
   o_orderkey BIGINT,
   o_custkey BIGINT,
   o_orderstatus STRING,
-  o_totalprice DOUBLE,
+  o_totalprice DECIMAL(15,2),
   o_orderdate DATE,
   o_orderpriority STRING,
   o_clerk STRING,
-  o_shippriority BIGINT,
+  o_shippriority INT,
   o_comment STRING
 )
 USING DELTA;
@@ -95,11 +95,11 @@ CREATE OR REPLACE TABLE lineitem (
   l_orderkey BIGINT,
   l_partkey BIGINT,
   l_suppkey BIGINT,
-  l_linenumber BIGINT,
-  l_quantity DOUBLE,
-  l_extendedprice DOUBLE,
-  l_discount DOUBLE,
-  l_tax DOUBLE,
+  l_linenumber INT,
+  l_quantity DECIMAL(15,2),
+  l_extendedprice DECIMAL(15,2),
+  l_discount DECIMAL(15,2),
+  l_tax DECIMAL(15,2),
   l_returnflag STRING,
   l_linestatus STRING,
   l_shipdate DATE,
