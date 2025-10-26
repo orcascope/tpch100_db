@@ -1,23 +1,21 @@
-%pip install databricks-sdk==0.68.0
-%restart_python
 from databricks.sdk import WorkspaceClient
 from databricks.sdk.service.jobs import JobSettings as Job
 from databricks.sdk.service.jobs import JobCluster
 import os
 from setup.cluster_spec import *
 
-cluster_spec = d4sv3_single_tot_4c_16g
+cluster_spec = d4sv3_1w_tot_8c_32g
 cluster_name = cluster_spec.as_dict()['custom_tags']['resource_type']                        
 job_cluster_key= cluster_spec.as_dict()['custom_tags']['job_cluster_key'] 
 
 copy_job = Job.from_dict(
     {
-        "name": "copy_ingest_tpch",
+        "name": "copy_ingest_tpch_concurrent",
         "tasks": [
             {
                 "task_key": "copy_ingest",
                 "notebook_task": {
-                    "notebook_path": os.path.abspath("./transform/copy_ingest"),
+                    "notebook_path": "/Workspace/Repos/tpch100_db/tpch100_db/transform/copy_ingest_concurrent",),
                     "source": "WORKSPACE"
                 },
                 ## this matters to assign the cluster to task.
@@ -39,7 +37,7 @@ copy_job = Job.from_dict(
         "parameters": [
             {"name": "CATALOG", "default": "1"},
             {"name": "SCHEMA", "default": "1"},
-            {"name": "SCALE", "default": "0"},
+            {"name": "SCALE", "default": "100"},
             {"name": "PROFILE", "default": "1"},
             {"name": "PROFILE_DTL", "default": "1"}
         ]
@@ -57,7 +55,7 @@ tpch_query_job = Job.from_dict(
             {
                 "task_key": "tpch_query",
                 "notebook_task": {
-                    "notebook_path": os.path.abspath("./transform/run_tpch_queries"),
+                    "notebook_path": "/Workspace/Repos/tpch100_db/tpch100_db/transform/run_tpch_queries"),
                     "source": "WORKSPACE"
                 },
                 "job_cluster_key": job_cluster_key 
@@ -78,7 +76,7 @@ tpch_query_job = Job.from_dict(
         "parameters": [
             {"name": "CATALOG", "default": "1"},
             {"name": "SCHEMA", "default": "1"},
-            {"name": "SCALE", "default": "0"},
+            {"name": "SCALE", "default": "100"},
             {"name": "Q_NUM", "default": "0"},
             {"name": "PROFILE", "default": "1"},
             {"name": "PROFILE_DTL", "default": "1"}
