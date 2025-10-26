@@ -2,30 +2,33 @@ Use Catalog workspace;
 CREATE SCHEMA IF NOT EXISTS tpch100_db;
 
 -- nation
+DROP TABLE IF EXISTS nation;
 CREATE OR REPLACE TABLE nation (
-  n_nationkey INT,
+  n_nationkey BIGINT,
   n_name STRING,
-  n_regionkey INT,
+  n_regionkey BIGINT,
   n_comment STRING
 )
 USING DELTA;
 
 -- region
+DROP TABLE IF EXISTS region;
 CREATE OR REPLACE TABLE region (
-  r_regionkey INT,
+  r_regionkey BIGINT,
   r_name STRING,
   r_comment STRING
 )
 USING DELTA;
 
 -- part
+DROP TABLE IF EXISTS part;
 CREATE OR REPLACE TABLE part (
-  p_partkey INT,
+  p_partkey BIGINT,
   p_name STRING,
   p_mfgr STRING,
   p_brand STRING,
   p_type STRING,
-  p_size INT,
+  p_size BIGINT,
   p_container STRING,
   p_retailprice DOUBLE,
   p_comment STRING
@@ -33,11 +36,12 @@ CREATE OR REPLACE TABLE part (
 USING DELTA;
 
 -- supplier
+DROP TABLE IF EXISTS supplier;
 CREATE OR REPLACE TABLE supplier (
-  s_suppkey INT,
+  s_suppkey BIGINT,
   s_name STRING,
   s_address STRING,
-  s_nationkey INT,
+  s_nationkey BIGINT,
   s_phone STRING,
   s_acctbal DOUBLE,
   s_comment STRING
@@ -45,21 +49,23 @@ CREATE OR REPLACE TABLE supplier (
 USING DELTA;
 
 -- partsupp
+DROP TABLE IF EXISTS partsupp;
 CREATE OR REPLACE TABLE partsupp (
-  ps_partkey INT,
-  ps_suppkey INT,
-  ps_availqty INT,
+  ps_partkey BIGINT,
+  ps_suppkey BIGINT,
+  ps_availqty BIGINT,
   ps_supplycost DOUBLE,
   ps_comment STRING
 )
 USING DELTA;
 
 -- customer
+DROP TABLE IF EXISTS customer;
 CREATE OR REPLACE TABLE customer (
-  c_custkey INT,
+  c_custkey BIGINT,
   c_name STRING,
   c_address STRING,
-  c_nationkey INT,
+  c_nationkey BIGINT,
   c_phone STRING,
   c_acctbal DOUBLE,
   c_mktsegment STRING,
@@ -68,25 +74,27 @@ CREATE OR REPLACE TABLE customer (
 USING DELTA;
 
 -- orders (partitioning by order date for better date-range query performance)
+DROP TABLE IF EXISTS orders;
 CREATE OR REPLACE TABLE orders (
-  o_orderkey INT,
-  o_custkey INT,
+  o_orderkey BIGINT,
+  o_custkey BIGINT,
   o_orderstatus STRING,
   o_totalprice DOUBLE,
   o_orderdate DATE,
   o_orderpriority STRING,
   o_clerk STRING,
-  o_shippriority INT,
+  o_shippriority BIGINT,
   o_comment STRING
 )
 USING DELTA;
 
 -- lineitem (partition by ship date)
+DROP TABLE IF EXISTS lineitem;
 CREATE OR REPLACE TABLE lineitem (
-  l_orderkey INT,
-  l_partkey INT,
-  l_suppkey INT,
-  l_linenumber INT,
+  l_orderkey BIGINT,
+  l_partkey BIGINT,
+  l_suppkey BIGINT,
+  l_linenumber BIGINT,
   l_quantity DOUBLE,
   l_extendedprice DOUBLE,
   l_discount DOUBLE,
@@ -102,4 +110,4 @@ CREATE OR REPLACE TABLE lineitem (
 )
 USING DELTA;
 
-
+-- end of line
