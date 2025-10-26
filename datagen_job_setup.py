@@ -17,7 +17,7 @@ datagen_job = Job.from_dict(
             {
                 "task_key": "datagen_tpch",
                 "notebook_task": {
-                    "notebook_path": os.path.abspath("/Workspace/Repos/tpch100_db/tpch100_db/setup/tpchgen"),
+                    "notebook_path":"/Workspace/Repos/tpch100_db/tpch100_db/setup/tpchgen",
                     "source": "WORKSPACE"
                 },
                 ## this matters to assign the cluster to task.
