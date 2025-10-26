@@ -1,5 +1,6 @@
 Use Catalog workspace;
 CREATE SCHEMA IF NOT EXISTS tpch100_db;
+USE SCHEMA tpch100_db
 
 -- nation
 DROP TABLE IF EXISTS nation;

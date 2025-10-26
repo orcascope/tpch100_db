@@ -15,7 +15,7 @@ copy_job = Job.from_dict(
             {
                 "task_key": "copy_ingest",
                 "notebook_task": {
-                    "notebook_path": "/Workspace/Repos/tpch100_db/tpch100_db/transform/copy_ingest_concurrent",),
+                    "notebook_path": "/Workspace/Repos/tpch100_db/tpch100_db/transform/copy_ingest_concurrent",
                     "source": "WORKSPACE"
                 },
                 ## this matters to assign the cluster to task.
@@ -55,7 +55,7 @@ tpch_query_job = Job.from_dict(
             {
                 "task_key": "tpch_query",
                 "notebook_task": {
-                    "notebook_path": "/Workspace/Repos/tpch100_db/tpch100_db/transform/run_tpch_queries"),
+                    "notebook_path": "/Workspace/Repos/tpch100_db/tpch100_db/transform/run_tpch_queries",
                     "source": "WORKSPACE"
                 },
                 "job_cluster_key": job_cluster_key 
