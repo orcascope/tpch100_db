@@ -1,5 +1,5 @@
-%pip install databricks-sdk==0.68.0
-%restart_python
+### %pip install databricks-sdk==0.68.0
+### %restart_python
 from databricks.sdk import WorkspaceClient
 from databricks.sdk.service.jobs import JobSettings as Job
 from databricks.sdk.service.jobs import JobCluster
@@ -17,7 +17,7 @@ datagen_job = Job.from_dict(
             {
                 "task_key": "datagen_tpch",
                 "notebook_task": {
-                    "notebook_path": os.path.abspath("./setup/tpchgen"),
+                    "notebook_path": os.path.abspath("/Workspace/Repos/tpch100_db/tpch100_db/setup/tpchgen"),
                     "source": "WORKSPACE"
                 },
                 ## this matters to assign the cluster to task.
