@@ -32,7 +32,7 @@ w = WorkspaceClient()
 # watch_job_id(w, response.run_id)
 
 ### Iterate thru each tpch_query and submit as separate job.
-for i in range(1,23):
+for i in range(1, 23):
     response = w.jobs.run_now(job_id=285229417579798 , 
                         job_parameters = {"CATALOG": "workspace",
                                             "SCHEMA": "tpch100_db",
