@@ -1,6 +1,3 @@
-import os
-import time
-
 from databricks.sdk import WorkspaceClient
 from databricks.sdk.service import jobs
 from util.util_functions import watch_job_id
@@ -32,17 +29,26 @@ w = WorkspaceClient()
 # watch_job_id(w, response.run_id)
 
 ### Iterate thru each tpch_query and submit as separate job.
-for i in range(1, 23):
-    response = w.jobs.run_now(job_id=285229417579798 , 
-                        job_parameters = {"CATALOG": "workspace",
-                                            "SCHEMA": "tpch100_db",
-                                            "SCALE": 100,
-                                            "Q_NUM": f"{str(i)}",
-                                            "PROFILE": "batch_aggr",
-                                            "PROFILE_DTL": f"d4sv3_1w_tot_8c_32g_qnum{str(i)}_after_concurrent_copy"
-                                            }              
-                        )    
-    watch_job_id(w, response.run_id) 
+# for i in range(1, 23):
+#     response = w.jobs.run_now(job_id=285229417579798 , 
+#                         job_parameters = {"CATALOG": "workspace",
+#                                             "SCHEMA": "tpch100_db",
+#                                             "SCALE": 100,
+#                                             "Q_NUM": f"{str(i)}",
+#                                             "PROFILE": "batch_aggr",
+#                                             "PROFILE_DTL": f"d4sv3_1w_tot_8c_32g_qnum{str(i)}_after_concurrent_copy"
+#                                             }              
+#                         )    
+#     watch_job_id(w, response.run_id) 
     
+#Run all queries concurrently in a single job run
+response = w.jobs.run_now(job_id=963957780768035 , 
+                    job_parameters = {"CATALOG": "workspace",
+                                        "SCHEMA": "tpch100_db",
+                                        "PROFILE": "batch_aggr",
+                                        "PROFILE_DTL": f"d4sv3_1w_tot_8c_32g_all_concurrent_run"
+                                        }              
+                    )    
+watch_job_id(w, response.run_id) 
 
 #- end of script                    

@@ -1,4 +1,4 @@
-# ...existing code...
+# To get the job run details from the API using a list of run_id's. 
 import re
 from databricks.sdk import WorkspaceClient
 from databricks.sdk.service import jobs
