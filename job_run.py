@@ -45,8 +45,11 @@ w = WorkspaceClient()
 response = w.jobs.run_now(job_id=963957780768035 , 
                     job_parameters = {"CATALOG": "workspace",
                                         "SCHEMA": "tpch100_db",
+                                        "MAX_WORKERS": "4",
                                         "PROFILE": "batch_aggr",
-                                        "PROFILE_DTL": f"d4sv3_1w_tot_8c_32g_all_concurrent_run"
+                                        "PROFILE_DTL": f"d4sv3_1w_tot_8c_32g_concurrent_run_4workers",
+                                        "DESC": """Running all queries concurrently with 4 workers. 
+                                                Single worker with 4c and 16GB."""
                                         }              
                     )    
 watch_job_id(w, response.run_id) 

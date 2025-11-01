@@ -118,7 +118,8 @@ tpch_query_concurrent_job = Job.from_dict(
             {"name": "SCHEMA", "default": "1"},
             {"name": "MAX_WORKERS", "default": "0"},
             {"name": "PROFILE", "default": "1"},
-            {"name": "PROFILE_DTL", "default": "1"}
+            {"name": "PROFILE_DTL", "default": "1"},
+            {"name": "DESC", "default": "0"}
         ]
     }
 )
@@ -132,7 +133,7 @@ w = WorkspaceClient()
 # print(f"Tpch job id: {tpch_job_id}")
 
 tpch_job_concurrent_id = w.jobs.update(job_id=963957780768035,
-                **tpch_query_concurrent_job.as_shallow_dict())
+                new_settings = tpch_query_concurrent_job)
 print(f"Tpch job concur id: {tpch_job_concurrent_id}")
 
 # end of script
