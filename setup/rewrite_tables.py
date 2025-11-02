@@ -1,4 +1,4 @@
-spark.sql("ALTER TABLE lineitem set delta.targetFileSize = '256MB'") 
+spark.sql("ALTER TABLE lineitem SET TBLPROPERTIES ('delta.targetFileSize' = '256MB')") 
 
 df = (spark.sql("""
         select * from lineitem_stage 
@@ -7,7 +7,7 @@ df = (spark.sql("""
 
 df.write.insertInto("lineitem") 
 
-spark.sql("ALTER TABLE lineitem set delta.targetFileSize = '256MB'") 
+spark.sql("ALTER TABLE orders SET TBLPROPERTIES ('delta.targetFileSize' = '256MB')") 
 
 df = (spark.sql("""
         select * from orders_stage 
