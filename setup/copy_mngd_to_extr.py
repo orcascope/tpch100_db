@@ -10,8 +10,8 @@ tables = [
 for table in tables:
     print(f"{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') } starting {table}")
     if table in ["lineitem, orders"]:
-        df = spark.read.format("delta").load(f"tpch100_db.{table}").repartition(200)
+        df = spark.read.table(f"tpch100_db.{table}").repartition(200)
     else:
-        df = spark.read.format("delta").load(f"tpch100_db.{table}")
+        df = spark.read.table(f"tpch100_db.{table}")
     df.write.insertInto(f"greyhill.{table}")
     print(f"{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') } loaded {table}")
