@@ -43,16 +43,16 @@ w = WorkspaceClient()
     
 #Run all queries concurrently in a single job run
 #tpch_query_conc_2wrkr_job id: CreateResponse(job_id=64363532768096)
-response = w.jobs.run_now(job_id=64363532768096 , 
+# tpch_query_duck id: CreateResponse(job_id=963764923699891)
+response = w.jobs.run_now(job_id=963764923699891 , 
                     job_parameters = {"CATALOG": "workspace",
-                                        "SCHEMA": "tpch100_db",
+                                        "SCHEMA": "greyhill",
                                         "MAX_WORKERS": "4",
                                         "PROFILE": "batch_aggr",
-                                        "PROFILE_DTL": f"d4sv3_2w_tot_12c_48g_concurrent_run_4workers",
+                                        "PROFILE_DTL": f"d8sv3_single_8c_32g_duck_concur_run_4workers",
                                         "DESC": """Running all queries concurrently with 4 workers. 
-                                                Two workers with 4c and 16GB. runtime 17.3.x-scala2.13.
-                                                spark config for 350 parts, AQE, Delta IO cache enabled.
-                                                After clustering on lineitem and orders tables."""
+                                                Singlenode with 8C/32G. runtime 17.3.x-scala2.13.
+                                                Using DuckDB delta_scan to read and execute queries."""
                                         }              
                     )    
 watch_job_id(w, response.run_id) 
