@@ -1,3 +1,6 @@
+spark.sql("USE CATALOG workspace")
+spark.sql("USE SCHEMA tpch100_db")
+
 spark.sql("ALTER TABLE lineitem SET TBLPROPERTIES ('delta.targetFileSize' = '256MB')") 
 
 df = (spark.sql("""
