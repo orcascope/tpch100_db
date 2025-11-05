@@ -78,6 +78,27 @@ d8sv3_single_8c_32g = ClusterSpec.from_dict({
                             }
                         })
 
+d16sv3_single_16c_64g = ClusterSpec.from_dict({
+                            "data_security_mode": "DATA_SECURITY_MODE_AUTO",
+                            "custom_tags": {
+                                "resource_type": "d16sv3_single_16c_64g",
+                                "job_cluster_key": "d16sv3"+"_"+str(uuid.uuid1())[:8]
+                            },
+                            "kind": "CLASSIC_PREVIEW",
+                            "azure_attributes": {
+                                "availability": "SPOT_AZURE"
+                            },
+                            "runtime_engine": "STANDARD",
+                            "spark_version": "17.3.x-scala2.13",
+                            "node_type_id": "Standard_D16s_v3",
+                            "is_single_node": True,
+                            "spark_conf": {
+                                "spark.sql.shuffle.partitons": "360",
+                                "spark.databricks.io.cache.enabled": "true",
+                                "spark.sql.adaptive.enabled":  "true",
+                            }
+                        })
+
 # from databricks.sdk import WorkspaceClient
 # w = WorkspaceClient()
 # response = w.clusters.spark_versions()

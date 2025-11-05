@@ -164,16 +164,16 @@ tpch_query_conc_2wrkr_job = Job.from_dict(
     }
 )
 
-cluster_spec = d8sv3_single_8c_32g
+cluster_spec = d16sv3_single_16c_64g
 cluster_name = cluster_spec.as_dict()['custom_tags']['resource_type']                        
 job_cluster_key= cluster_spec.as_dict()['custom_tags']['job_cluster_key'] 
 
 tpch_query_duck = Job.from_dict(
     {
-        "name": "tpch_query_duck",
+        "name": "tpch_query_duck_16c_64g",
         "tasks": [
             {
-                "task_key": "tpch_query_duck",
+                "task_key": "tpch_query_duck_16c_64g",
                 "notebook_task": {
                     "notebook_path": "/Workspace/Repos/tpch100_db/tpch100_db/transform/duck_run_tpch_concur",
                     "source": "WORKSPACE"
@@ -208,11 +208,11 @@ w = WorkspaceClient()
 # copy_job_id = w.jobs.create(**copy_job.as_shallow_dict())
 # print(f"Copy job id: {copy_job_id}")
 
-# tpch_job_id = w.jobs.create(**tpch_query_duck.as_shallow_dict())
-# print(f"tpch_query_duck id: {tpch_job_id}")
+tpch_job_id = w.jobs.create(**tpch_query_duck.as_shallow_dict())
+print(f"tpch_query_duck id: {tpch_job_id}")
 
-tpch_job_concurrent_id = w.jobs.update(job_id=963764923699891,
-                new_settings = tpch_query_duck)
+# tpch_job_concurrent_id = w.jobs.update(job_id=963764923699891,
+#                 new_settings = tpch_query_duck)
 # print(f"Tpch job concur id: {tpch_job_concurrent_id}")
 
 # end of script
