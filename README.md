@@ -1,3 +1,8 @@
+# Results
+
+<img width="960" height="881" alt="image" src="https://github.com/user-attachments/assets/f30af1fc-d099-4002-b946-92b0d77ddef2" />
+
+
 # tpch100_db
 #### Data generation: 
 With tpchgen-cli utility. Data was first generated as partitioned parquet file and stored in ADLS storage. https://github.com/orcascope/tpch100_db/blob/main/setup/tpchgen.ipynb
